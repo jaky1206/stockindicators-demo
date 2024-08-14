@@ -67,10 +67,37 @@ public static class Program
         }
 
 
+        var data = new List<(DateTime Time, Decimal Close)>
+            {
+                (new DateTime(2024, 1, 1), 100),
+                (new DateTime(2024, 1, 2), 105),
+                (new DateTime(2024, 1, 3), 103),
+                (new DateTime(2024, 1, 4), 108),
+                (new DateTime(2024, 1, 5), 106),
+                (new DateTime(2024, 1, 6), 110),
+                (new DateTime(2024, 1, 7), 115),
+                (new DateTime(2024, 1, 8), 120),
+                (new DateTime(2024, 1, 9), 115),
+                (new DateTime(2024, 1, 10), 118)
+            };
+
+        // map data to a quote 2 where first item from data will map to ast item and second will map to 5th item
+        IEnumerable<Quote> quotes2 = data
+            .Select(x => new Quote
+            {
+                Date = x.Time,
+                Open = x.Close,
+                High = x.Close,
+                Low = x.Close,
+                Close = x.Close,
+                Volume = 0
+            })
+            .AsEnumerable();
+
         int atrPeriods = 2;
         EndType endType = EndType.Close;
 
-        IEnumerable<RenkoResult> renkoResults = quotes.GetRenkoAtr(atrPeriods, endType);
+        IEnumerable<RenkoResult> renkoResults = quotes2.GetRenkoAtr(atrPeriods, endType);
 
         // show results
         Console.WriteLine("Renko Results ---------------------------");
