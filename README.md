@@ -1,2 +1,2 @@
 # stockindicators-demo
-examples from https://github.com/DaveSkender/Stock.Indicators/tree/main/docs/examples and modified for demo
+Examples copied from stock indicators for .NET and modified for demo.
